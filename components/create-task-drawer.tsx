@@ -4,7 +4,7 @@ import * as React from "react"
 import Link from "next/link"
 
 
-import { ExternalLink  } from "lucide-react"
+import { FileSymlink  } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 
@@ -52,10 +52,10 @@ export function CreateTaskDrawer({ editable, task } : CreateTaskDrawerProps) {
                         <DrawerTitle className="flex justify-between">
                             {dictionary.common.taskForm[editMode ? 'edit' : 'create'].formHeader}
                             
-                            <Link href="/task/new" title={`open page`}>
-                                <ExternalLink
+                            <Link href="/task/new" title={editMode ? 'Open Edit Task page' : 'Open Create Task page'}>
+                                <FileSymlink
                                     className="cursor-pointer"
-                                    color="blue"
+                                    color="#2563eb"
                                     size={24}
                                 />
                             </Link>

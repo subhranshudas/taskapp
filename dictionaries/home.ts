@@ -1,5 +1,5 @@
 const home = {
-    noTaskMessage: 'You have no tasks! Please create one.',
+    banner: ['Task your way to', 'Success!'],
 }
 
 export default home

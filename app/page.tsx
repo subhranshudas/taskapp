@@ -1,7 +1,7 @@
 import { DataTable } from '@/components/data-table'
 import { columns } from '@/components/columns'
-import * as dictionary from '@/dictionaries'
 import { CreateTaskDrawer } from '@/components/create-task-drawer'
+import { AppBanner } from '@/components/app-banner'
 
 
 export default async function Home() {
@@ -13,7 +13,13 @@ export default async function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24"> 
-      <CreateTaskDrawer />
+      
+      <AppBanner />
+
+      <div className='mt-6'>
+        <CreateTaskDrawer />
+      </div>
+      
       
       <section className="my-16">
         <DataTable data={tasks} columns={columns} />
