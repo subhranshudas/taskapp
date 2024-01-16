@@ -3,9 +3,10 @@ import { Inter as FontSans } from "next/font/google"
 import { cn } from "@/lib/utils"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Navbar } from '@/components/nav-bar'
-
+import { Footer } from '@/components/app-footer'
 
 import './globals.css'
+
 
 export const fontSans = FontSans({
   subsets: ["latin"],
@@ -39,7 +40,7 @@ export default function RootLayout({
             <div className="relative flex min-h-screen flex-col bg-background">
               <Navbar />
 
-              <main className="flex-1">{children}</main>
+              <main className="flex-1 border-b-[1px]">{children}</main>
 
               <Footer />
             </div>
@@ -47,12 +48,5 @@ export default function RootLayout({
         </ThemeProvider>
       </body>
     </html>
-  )
-}
-
-
-function Footer() {
-  return (
-    <footer>App Footer goes here</footer>
   )
 }

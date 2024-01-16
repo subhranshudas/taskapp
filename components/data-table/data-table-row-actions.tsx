@@ -14,7 +14,8 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 import { taskSchema, Task } from "./data/schema"
-import { CreateTaskForm } from "../create-task-form"
+import { CreateTaskDrawer } from "../create-task-drawer"
+import { DeleteTaskDialog } from "../delete-task-dialog"
 
 
 interface DataTableRowActionsProps<TData> {
@@ -26,14 +27,19 @@ export function DataTableRowActions<TData>({
 }: DataTableRowActionsProps<TData>) {
   const task = taskSchema.parse(row.original)
 
+  const [showCreateTaskDrawer, setShowCreateTaskDrawer] = React.useState<boolean>(false)
+  const [showDeleteTaskDialog, setDeleteTaskDialog] = React.useState<boolean>(false)
+
 
   const onEdit = () => {
     console.log("editing: ", task)
+    setShowCreateTaskDrawer(true)
   }
 
   const onDelete = () => {
     console.log("deleting: ", task)
     // call delete action
+    setDeleteTaskDialog(true)
   }
 
   return (
@@ -60,7 +66,10 @@ export function DataTableRowActions<TData>({
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-    </>
+    
+      {showCreateTaskDrawer ? <CreateTaskDrawer editable task={task} /> : null}
 
+      {showDeleteTaskDialog ? <DeleteTaskDialog task={task} /> : null}
+    </>
   )
 }
