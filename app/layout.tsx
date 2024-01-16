@@ -40,7 +40,7 @@ export default function RootLayout({
             <div className="relative flex min-h-screen flex-col bg-background">
               <Navbar />
 
-              <main className="flex-1 border-b-[1px]">{children}</main>
+              <main className="flex-1">{children}</main>
 
               <Footer />
             </div>
