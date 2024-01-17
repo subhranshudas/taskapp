@@ -1,9 +1,9 @@
 import Link from "next/link"
+import { Button } from '@/components/ui/button';
 
 import { GitHubLogoIcon } from "@radix-ui/react-icons"
-
 import { ThemeToggle } from '@/components/theme-toggle'
-import { AppLogo } from "@/components/app-logo"
+
 
 export function Navbar() {
   return (
@@ -11,23 +11,18 @@ export function Navbar() {
       <nav className="container flex h-14 max-w-screen-2xl items-center">
 
         <Link href="/" title="Taskapp">
-            <AppLogo />
+          <span className="font-extrabold text-2xl text-blue-400">taskapp</span>
         </Link>
         
 
         <div className="flex flex-1 items-center space-x-2 justify-end">
-          <div className="flex items-center">
+          <div className="flex items-center space-x-2">
             
-            <ThemeToggle />
-
-            <Link
-              href="https://github.com/subhranshudas/taskapp"
-              target="_blank"
-              rel="noreferrer"
-              title="Github Repo"
-            >
-              <GitHubLogoIcon className="h-4 w-4 mx-2" />
-            </Link>
+              <ThemeToggle />
+            
+              <Link href='/auth/sign-in'>
+                <Button>Sign In</Button>
+              </Link>
             
           </div>
         </div>

@@ -1,69 +1,53 @@
-import { DataTable } from '@/components/data-table'
-import { columns } from '@/components/columns'
-import { CreateTaskDrawer } from '@/components/create-task-drawer'
-import { AppBanner } from '@/components/app-banner'
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 
-
-export default async function Home() {
-
-  const tasks = await getTasks()
-
-  // console.log("tasks: ", tasks)
-
-
+ 
+export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24"> 
-      
-      <AppBanner />
+    <div className='container'>
+      <div className='flex flex-col space-y-14'>
+        <div className='flex flex-col space-y-8'>
+          <h1 className='mt-16 text-4xl lg:text-6xl 2xl:text-7xl font-semibold text-center max-w-4xl mx-auto'>
+            The Best Task Management App around!
+          </h1>
+ 
+          <h2 className='text-center text-lg xl:text-2xl text-gray-400  font-light'>
+            <p>
+              Taskapp is a user-friendly task management app that empowers users to effortlessly create, update, and delete tasks.
+            </p>
+ 
+            <p>
+              With robust filtering and sorting capabilities, it enhances productivity by allowing seamless organization and customization of tasks to suit individual preferences.
+            </p>
+ 
+          </h2>
+        </div>
 
-      <div className='mt-6'>
-        <CreateTaskDrawer />
+        <div className='flex justify-center'>
+          <span className='py-2 px-4 rounded-full shadow dark:shadow-gray-500 text-sm'>
+            Plan, execute. Crush your goals.
+          </span>
+        </div>
+ 
+        <div className='flex flex-col space-y-3'>
+          <div className='flex space-x-4 justify-center'>
+              <Link href='/auth/sign-up'>
+                <Button>
+                  Create an Account
+                </Button>
+              </Link>
+            
+ 
+            <Link href='/auth/sign-in'>
+              <Button variant="secondary">
+                Sign In
+              </Button>
+            </Link>
+          </div>
+ 
+        </div>
+
       </div>
-      
-      
-      <section className="my-16">
-        <DataTable data={tasks} columns={columns} />
-      </section>
-      
-    </main>
+    </div>
   )
 }
-
-// actual data call from DB
-const getTasks = async (): Promise<any> => {
-  return new Promise((resolve) => {
-
-    function getRandomStatus() {
-      const statuses = ["todo", "inprogress", "done"];
-      const randomIndex = Math.floor(Math.random() * statuses.length);
-      return statuses[randomIndex];
-    }
-    
-    function generateRandomTask(id: string) {
-      const adjectives = ["Awesome", "Amazing", "Fantastic", "Cool", "Epic"];
-      const nouns = ["Task", "Project", "Assignment", "Job", "Mission"];
-    
-      const randomTitle =
-        adjectives[Math.floor(Math.random() * adjectives.length)] +
-        " " +
-        nouns[Math.floor(Math.random() * nouns.length)];
-    
-      const randomDescription = `Description for ${randomTitle}`;
-    
-      return {
-        id: id,
-        title: randomTitle,
-        description: randomDescription,
-        status: getRandomStatus(),
-      };
-    }
-    
-    const taskData = [];
-    
-    for (let i = 1; i <= 50; i++) {
-      taskData.push(generateRandomTask(i.toString()));
-    }
-
-    resolve(taskData);
-  });
-};

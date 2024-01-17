@@ -1,5 +1,9 @@
-export default function Loader() {
-    return (
-        <div className="text-4xl">App is loading...</div>
-    )
+import AppLoading from '@/components/app-loading';
+ 
+function Loading() {
+  return (
+    <AppLoading />
+  );
 }
+ 
+export default Loading;
