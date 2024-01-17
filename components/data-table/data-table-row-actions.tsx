@@ -38,7 +38,6 @@ export function DataTableRowActions<TData>({
 
   const onDelete = () => {
     console.log("deleting: ", task)
-    // call delete action
     setDeleteTaskDialog(true)
   }
 

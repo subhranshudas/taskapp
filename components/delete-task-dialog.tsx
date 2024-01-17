@@ -18,10 +18,9 @@ import { getStatusDisplayValue } from "@/lib/utils"
 
 interface DeleteTaskDialogProps {
     task: Task
-    onDelete: (arg0: Task) => void
 }
 
-export function DeleteTaskDialog({ task, onDelete } : DeleteTaskDialogProps) {
+export function DeleteTaskDialog({ task } : DeleteTaskDialogProps) {
     const [open, setOpen] = React.useState<boolean>(true)
 
     return (
