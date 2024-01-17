@@ -1,8 +1,8 @@
 import Link from "next/link"
 import { Button } from '@/components/ui/button';
 
-import { GitHubLogoIcon } from "@radix-ui/react-icons"
 import { ThemeToggle } from '@/components/theme-toggle'
+import UserMenu from "@/components/user-menu";
 
 
 export function Navbar() {
@@ -16,14 +16,14 @@ export function Navbar() {
         
 
         <div className="flex flex-1 items-center space-x-2 justify-end">
-          <div className="flex items-center space-x-2">
-            
+          <div className="flex items-center space-x-4">
               <ThemeToggle />
             
               <Link href='/auth/sign-in'>
                 <Button>Sign In</Button>
               </Link>
-            
+
+              <UserMenu />            
           </div>
         </div>
       </nav>
