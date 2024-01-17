@@ -27,6 +27,7 @@ import {
 
 import * as dictionary from '@/dictionaries'
 import { Task } from "@/types"
+import { createTaskAction } from "@/lib/actions/tasks"
 
 
 const formSchema = z.object({
@@ -66,6 +67,8 @@ export function CreateTaskForm({ onClose, editable, task } : CreateTaskFormProps
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
         console.log(values)
+
+        createTaskAction(values)
 
         if (typeof onClose === 'function') {
             onClose()

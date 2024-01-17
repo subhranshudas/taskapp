@@ -1,29 +1,29 @@
-
+import { redirect } from 'next/navigation';
 import { DataTable } from '@/components/data-table'
 import { columns } from '@/components/columns'
 import { CreateTaskDrawer } from '@/components/create-task-drawer'
+import { fetchTasks } from '@/lib/queries/tasks'
+import getSupabaseServerComponentClient from '@/lib/supabase/server-component-client'
 
 async function DashboardPage() {
     const tasks = await getTasks()
 
     return (
-      <div className='container'>
-        <section className='flex min-h-screen flex-col items-center justify-between p-24'>
-          <h1 className='text-2xl md:text-4xl font-bold'>Dashboard</h1>
+      <section className='flex min-h-screen flex-col items-center justify-start p-16'>
+        <h1 className='text-2xl md:text-4xl font-bold'>Dashboard</h1>
 
-          <p className='my-4'>Feel free to create, edit and delete any task you like!</p>
+        <p className='py-4'>Feel free to create, edit and delete any task you like!</p>
 
 
-          <article className='mt-12'>
-            <CreateTaskDrawer />
-          </article>
-      
-      
-          <article className="my-16">
-            <DataTable data={tasks} columns={columns} />
-          </article>
-        </section>
-      </div>
+        <article className='mt-4'>
+          <CreateTaskDrawer />
+        </article>
+    
+    
+        <article className="my-16 w-full md:w-3/5">
+          <DataTable data={tasks} columns={columns} />
+        </article>
+      </section>
     );
 }
 
@@ -31,40 +31,20 @@ export default DashboardPage;
 
 
 // actual data call from DB
-const getTasks = async (): Promise<any> => {
-  return new Promise((resolve) => {
+const getTasks = async () => {
+  const client = getSupabaseServerComponentClient();
+  const sessionResponse = await client.auth.getSession();
+  const user = sessionResponse.data?.session?.user;
 
-    function getRandomStatus() {
-      const statuses = ["todo", "inprogress", "done"];
-      const randomIndex = Math.floor(Math.random() * statuses.length);
-      return statuses[randomIndex];
-    }
-    
-    function generateRandomTask(id: string) {
-      const adjectives = ["Awesome", "Amazing", "Fantastic", "Cool", "Epic"];
-      const nouns = ["Task", "Project", "Assignment", "Job", "Mission"];
-    
-      const randomTitle =
-        adjectives[Math.floor(Math.random() * adjectives.length)] +
-        " " +
-        nouns[Math.floor(Math.random() * nouns.length)];
-    
-      const randomDescription = `Description for ${randomTitle}`;
-    
-      return {
-        id: id,
-        title: randomTitle,
-        description: randomDescription,
-        status: getRandomStatus(),
-      };
-    }
-    
-    const taskData = [];
-    
-    for (let i = 1; i <= 50; i++) {
-      taskData.push(generateRandomTask(i.toString()));
-    }
+  if (!user) {
+    redirect('/auth/sign-in');
+  }
 
-    resolve(taskData);
-  });
+  const { data, error } = await fetchTasks(client, user.id)
+  
+  if (error) {
+    throw error;
+  }
+
+  return data;
 };

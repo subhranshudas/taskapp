@@ -15,7 +15,7 @@ function UserMenu() {
   const signOut = useSignOut();
   const displayName = useDisplayName(session);
 
-  console.log("UserMenu render: session  = > ", session)
+  // console.log("UserMenu render: session  = > ", session)
 
   if (!session?.user) return null
 
