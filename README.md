@@ -111,9 +111,11 @@ tasks
 
 
 -- setup storage
-insert into storage.buckets (id, name)
-  values ('avatars', 'avatars');
+-- insert into storage.buckets (id, name)
+--   values ('avatars', 'avatars');
 
+--- step 1: create the bucket "avatars" using the UI.
+--- step 2: please don't forget to make the "avatars" bucket public for object in Supabase UI 1st after creating the bucket.
 
 -- Set up access controls for storage.
 -- See https://supabase.com/docs/guides/storage#policy-examples for more details.
@@ -126,6 +128,8 @@ create policy "Anyone can upload an avatar." on storage.objects
 
 create policy "Anyone can update their own avatar." on storage.objects
   for update using ( auth.uid() = owner ) with check (bucket_id = 'avatars');
+
+
 ```
 
 ## How to Use
