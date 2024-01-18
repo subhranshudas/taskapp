@@ -64,22 +64,30 @@ export function CreateTaskForm({ onClose, editable, task } : CreateTaskFormProps
     })
 
     // gets called only on successful validation
-    function onSubmit(values: z.infer<typeof formSchema>) {
-        console.log(values)
+    async function onSubmit(values: z.infer<typeof formSchema>) {
+        const editMode = editable && task
+        let result: any = null
 
         try {
-            if (editable && task) {
-                updateTaskAction({ ...values, id: task.id })
+            if (editMode) {
+                result = await updateTaskAction({ ...values, id: task.id })
             } else {
-                createTaskAction(values)
+                result = await createTaskAction(values)
             }
 
             if (typeof onClose === 'function') {
                 onClose()
             }
+
+            toast({
+                title: `${editMode ? 'Task updated successfully' : 'Task created successfully'}`,
+                description: `Task ID - ${result.id}`
+            })
+
         } catch (err) {
             toast({
                 title: "task form submission error",
+                description: JSON.stringify(err),
                 variant: "destructive"
             })
         }

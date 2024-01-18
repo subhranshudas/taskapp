@@ -14,7 +14,7 @@ import { Label } from "@/components/ui/label"
 import { Task } from "@/types"
 import { getStatusDisplayValue } from "@/lib/utils"
 import { deleteTaskAction } from "@/lib/actions/tasks"
-
+import { toast } from "@/components/ui/use-toast"
 
 interface DeleteTaskDialogProps {
     task: Task
@@ -23,7 +23,6 @@ interface DeleteTaskDialogProps {
 
 export function DeleteTaskDialog({ task, toggle } : DeleteTaskDialogProps) {
     const [open, setOpen] = React.useState<boolean>(true)
-
 
     const toggler = (boolValue: boolean) => {
         setOpen(boolValue);
@@ -34,12 +33,27 @@ export function DeleteTaskDialog({ task, toggle } : DeleteTaskDialogProps) {
     }
 
     const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (event) => {
-      event.preventDefault();
+        event.preventDefault();
 
-      const tasIdToBeDeleted = task.id
-      console.log("tasIdToBeDeleted: ", tasIdToBeDeleted)
-      deleteTaskAction({ id : tasIdToBeDeleted })
-      setOpen(false)
+        const tasIdToBeDeleted = task.id
+        
+        try {
+            const result: any = await deleteTaskAction({ id : tasIdToBeDeleted })
+
+            toast({
+                title: 'Task deleted successfully',
+                description: `Task ID - ${result.id}`
+            })
+
+        } catch (err) {
+            toast({
+                title: "task form submission error",
+                description: JSON.stringify(err),
+                variant: "destructive"
+            })
+        } finally {
+            setOpen(false)
+        }
     };
 
     return (

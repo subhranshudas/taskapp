@@ -21,7 +21,7 @@ export async function createTaskAction(formData: any) {
   }
 
   // insert the post into the database
-  await insertTask(client, {
+  const [result] = await insertTask(client, {
     title,
     description,
     status,
@@ -29,6 +29,8 @@ export async function createTaskAction(formData: any) {
   });
 
   revalidatePath(`/dashboard`, 'page');
+
+  return result;
 }
 
 
@@ -40,14 +42,14 @@ export async function updateTaskAction(formData: any) {
 
 
   const client = getSupabaseServerActionClient();
-  const { data, error } = await client.auth.getUser();
+  const { error } = await client.auth.getUser();
 
   if (error) {
     throw error;
   }
 
   // insert the post into the database
-  await updateTask(client, {
+  const [result] = await updateTask(client, {
     id,
     title,
     description,
@@ -55,6 +57,8 @@ export async function updateTaskAction(formData: any) {
   });
 
   revalidatePath(`/dashboard`, 'page');
+
+  return result
 }
 
 
@@ -69,9 +73,11 @@ export async function deleteTaskAction(formData: any) {
   }
 
   // insert the post into the database
-  await deleteTask(client, {
+  const [result] = await deleteTask(client, {
     id,
   });
 
   revalidatePath(`/dashboard`, 'page');
+
+  return result
 }
