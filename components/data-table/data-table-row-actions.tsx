@@ -28,18 +28,7 @@ export function DataTableRowActions<TData>({
   const task = taskSchema.parse(row.original)
 
   const [showCreateTaskDrawer, setShowCreateTaskDrawer] = React.useState<boolean>(false)
-  const [showDeleteTaskDialog, setDeleteTaskDialog] = React.useState<boolean>(false)
-
-
-  const onEdit = () => {
-    console.log("editing: ", task)
-    setShowCreateTaskDrawer(true)
-  }
-
-  const onDelete = () => {
-    console.log("deleting: ", task)
-    setDeleteTaskDialog(true)
-  }
+  const [showDeleteTaskDialog, setShowDeleteTaskDialog] = React.useState<boolean>(false)
 
   return (
     <>
@@ -54,21 +43,21 @@ export function DataTableRowActions<TData>({
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-[160px]">
-          <DropdownMenuItem onClick={onEdit} className="flex justify-between cursor-pointer">
+          <DropdownMenuItem onClick={() => setShowCreateTaskDrawer(true)} className="flex justify-between cursor-pointer">
             Edit
             <Pencil2Icon color="green" />
           </DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={onDelete} className="flex justify-between cursor-pointer">
+          <DropdownMenuItem onClick={() => setShowDeleteTaskDialog(true)} className="flex justify-between cursor-pointer">
             Delete
             <TrashIcon color="red" />
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     
-      {showCreateTaskDrawer ? <CreateTaskDrawer editable task={task} /> : null}
+      {showCreateTaskDrawer ? <CreateTaskDrawer editable task={task} toggle={setShowCreateTaskDrawer} /> : null}
 
-      {showDeleteTaskDialog ? <DeleteTaskDialog task={task} /> : null}
+      {showDeleteTaskDialog ? <DeleteTaskDialog task={task} toggle={setShowDeleteTaskDialog} /> : null}
     </>
   )
 }

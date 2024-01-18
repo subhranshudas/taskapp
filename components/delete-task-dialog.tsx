@@ -18,10 +18,20 @@ import { deleteTaskAction } from "@/lib/actions/tasks"
 
 interface DeleteTaskDialogProps {
     task: Task
+    toggle: (arg0: boolean) => void
 }
 
-export function DeleteTaskDialog({ task } : DeleteTaskDialogProps) {
+export function DeleteTaskDialog({ task, toggle } : DeleteTaskDialogProps) {
     const [open, setOpen] = React.useState<boolean>(true)
+
+
+    const toggler = (boolValue: boolean) => {
+        setOpen(boolValue);
+
+        if (typeof toggle === "function") {
+            toggle(boolValue)
+        }
+    }
 
     const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (event) => {
       event.preventDefault();
@@ -33,7 +43,7 @@ export function DeleteTaskDialog({ task } : DeleteTaskDialogProps) {
     };
 
     return (
-        <Dialog open={open} onOpenChange={setOpen}>
+        <Dialog open={open} onOpenChange={toggler}>
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
                 <DialogTitle>Delete Task</DialogTitle>

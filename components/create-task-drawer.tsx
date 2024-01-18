@@ -21,24 +21,34 @@ import * as dictionary from '@/dictionaries'
 import { CreateTaskForm } from "./create-task-form"
 import { Task } from "@/types"
 
+
 interface CreateTaskDrawerProps {
     editable?: boolean
     task?: Task
+    toggle?: (arg0: boolean) => void
 }
 
-export function CreateTaskDrawer({ editable, task } : CreateTaskDrawerProps) {
+export function CreateTaskDrawer({ editable, task, toggle } : CreateTaskDrawerProps) {
     const [open, setOpen] = React.useState<boolean>(!!editable)
     const editMode = (editable && task)
 
 
+    const toggler = (boolValue: boolean) => {
+        setOpen(boolValue);
+
+        if (typeof toggle === "function") {
+            toggle(boolValue)
+        }
+    }
+
     const formProps = {
-        onClose: () => setOpen(false),
+        onClose: () => toggler(false),
         editable,
         task
     }
 
     return (
-        <Drawer open={open} onOpenChange={setOpen}>
+        <Drawer open={open} onOpenChange={toggler}>
             {editMode ?
                 null : (
                     <DrawerTrigger asChild>
