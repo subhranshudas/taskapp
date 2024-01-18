@@ -47,7 +47,7 @@ export function DeleteTaskDialog({ task } : DeleteTaskDialogProps) {
                         <Input
                             id="description"
                             disabled
-                            value={task.description}
+                            value={task.description as string}
                             className="col-span-3"
                         />
                     </div>

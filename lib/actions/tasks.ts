@@ -8,7 +8,7 @@ import { Task } from '@/types';
 
 
 
-export async function createTaskAction(formData: Task) {
+export async function createTaskAction(formData: any) {
   const title = formData['title'];
   const description = formData['description'];
   const status = formData['status'];

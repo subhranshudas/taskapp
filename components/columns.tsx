@@ -6,11 +6,10 @@ import { Badge } from "@/components/ui/badge"
 import { Checkbox } from "@/components/ui/checkbox"
 
 import { labels, statuses } from "./data-table/data/data"
-import { Task } from "./data-table/data/schema"
 import { DataTableColumnHeader } from "@/components/data-table"
 import { DataTableRowActions } from "@/components/data-table"
 
-export const columns: ColumnDef<Task>[] = [
+export const columns: ColumnDef<any>[] = [
   // {
   //   id: "select",
   //   header: ({ table }) => (
