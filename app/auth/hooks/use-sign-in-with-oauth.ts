@@ -1,3 +1,5 @@
+"use client"
+
 import { SignInWithOAuthCredentials } from '@supabase/supabase-js';
 import { useMutation } from '@tanstack/react-query';
 import useSupabase from '@/lib/supabase/use-supabase';
