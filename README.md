@@ -3,12 +3,12 @@
 ## Live URL
 https://taskapp-ebon.vercel.app/
 
-Please checkout the live production version of the Task Management app called **taskapp** in the above URL. Have a look at the [how to use](/README.md#how-to-use) for better clarity. 
+Please checkout the live production version of the Task Management app called **taskapp** in the above URL. Have a look at the [how to use](#how-to-use) for better clarity. 
 
 Note - 
 1. I have built it as a Frontend dev but since Supabase provides robust backend features like postgres database & client SDK, i have used Supabase as my BaaS.
 
-2. Since it uses Supabase as a Backend, if you want to run this locally please ask me for the `.env` values or you can create yours locally following the below [database design](/README.md#database-design)
+2. Since it uses [Supabase](https://supabase.com/) as a Backend, if you want to run this locally please ask me for the `.env` values or you can create yours locally following the below [database design](#database-design)
 
 ## Tech-stack
 * NextJS 14 (Full stack React with Server Components, Server Actions)
@@ -18,7 +18,7 @@ Note -
 * Form component library - React Hook Form
 * tanstack/query for data fetching and frontend caching
 * Backend & Database - Supabase (A Postgres Wrapper on Steroids)
-* [todo](/README.md#upcoming-improvements-in-pipeline)
+* [todo](#upcoming-improvements-in-pipeline)
 
 
 ## Features
@@ -108,9 +108,11 @@ tasks
 ```
 
 ## How to Use
-1. Open the app `https://taskapp-ebon.vercel.app/` in a browser window/tab
+1. Open the app https://taskapp-ebon.vercel.app/ in a browser window/tab
 
 
 ## Upcoming Improvements In Pipeline
-1. Implement Vitest & Playwright testing for the app.
+1. Finish the already created `dictionary` map for text content to make content dynamic.
+2. Implement Vitest & Playwright testing for the app.
+
 
