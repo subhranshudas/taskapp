@@ -27,7 +27,7 @@ import {
 
 import * as dictionary from '@/dictionaries'
 import { Task } from "@/types"
-import { createTaskAction } from "@/lib/actions/tasks"
+import { createTaskAction, updateTaskAction  } from "@/lib/actions/tasks"
 
 
 const formSchema = z.object({
@@ -56,9 +56,9 @@ export function CreateTaskForm({ onClose, editable, task } : CreateTaskFormProps
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            title: "",
-            description: "",
-            status: "todo"
+            title: editable ? task?.title : "",
+            description: editable ? task?.description || "" : "",
+            status: editable ? task?.status : "todo"
         },
     })
 
@@ -68,7 +68,11 @@ export function CreateTaskForm({ onClose, editable, task } : CreateTaskFormProps
         // ✅ This will be type-safe and validated.
         console.log(values)
 
-        createTaskAction(values)
+        if (editable) {
+            updateTaskAction(values)
+        } else {
+            createTaskAction(values)
+        }
 
         if (typeof onClose === 'function') {
             onClose()

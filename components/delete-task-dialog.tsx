@@ -6,7 +6,6 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
@@ -14,6 +13,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Task } from "@/types"
 import { getStatusDisplayValue } from "@/lib/utils"
+import { deleteTaskAction } from "@/lib/actions/tasks"
 
 
 interface DeleteTaskDialogProps {
@@ -22,6 +22,15 @@ interface DeleteTaskDialogProps {
 
 export function DeleteTaskDialog({ task } : DeleteTaskDialogProps) {
     const [open, setOpen] = React.useState<boolean>(true)
+
+    const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (event) => {
+      event.preventDefault();
+
+      const tasIdToBeDeleted = task.id
+      console.log("tasIdToBeDeleted: ", tasIdToBeDeleted)
+      deleteTaskAction({ id : tasIdToBeDeleted })
+      setOpen(false)
+    };
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
@@ -32,7 +41,7 @@ export function DeleteTaskDialog({ task } : DeleteTaskDialogProps) {
                     Once you delete, the task will be deleted forever!
                 </DialogDescription>
                 </DialogHeader>
-                <div className="grid gap-4 py-4">
+                <form onSubmit={handleSubmit} className="grid gap-4 py-4">
                     <div className="grid grid-cols-4 items-center gap-4">
                         <Label htmlFor="title" className="text-right">Title</Label>
                         <Input
@@ -60,10 +69,9 @@ export function DeleteTaskDialog({ task } : DeleteTaskDialogProps) {
                             className="col-span-3"
                         />
                     </div>
-                </div>
-                <DialogFooter>
+
                     <Button variant="destructive" type="submit">Delete</Button>
-                </DialogFooter>
+                </form>
             </DialogContent>
         </Dialog>
     )

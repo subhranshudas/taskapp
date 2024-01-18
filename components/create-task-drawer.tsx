@@ -30,6 +30,7 @@ export function CreateTaskDrawer({ editable, task } : CreateTaskDrawerProps) {
     const [open, setOpen] = React.useState<boolean>(!!editable)
     const editMode = (editable && task)
 
+
     const formProps = {
         onClose: () => setOpen(false),
         editable,
