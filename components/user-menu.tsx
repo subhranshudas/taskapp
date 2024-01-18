@@ -3,7 +3,7 @@
 import { useMemo } from 'react';
 import Link from 'next/link';
 import { Session } from '@supabase/supabase-js';
-import { LogOut, LayoutDashboard, UserIcon } from 'lucide-react';
+import { LogOut, LayoutDashboard, UserIcon, Settings2 } from 'lucide-react';
 
 import { Avatar, AvatarFallback } from './ui/avatar';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from './ui/dropdown-menu';
@@ -36,6 +36,12 @@ function UserMenu() {
             <DropdownMenuItem className='cursor-pointer'>
               <LayoutDashboard className="mr-2 h-4 w-4" />
               <span>Dashboard</span>
+            </DropdownMenuItem>
+          </Link>
+          <Link href={'/profile'}>
+            <DropdownMenuItem className='cursor-pointer'>
+              <Settings2 className="mr-2 h-4 w-4" />
+              <span>Profile</span>
             </DropdownMenuItem>
           </Link>
         </DropdownMenuGroup>

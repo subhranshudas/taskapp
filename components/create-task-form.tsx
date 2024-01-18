@@ -27,8 +27,9 @@ import {
 
 import * as dictionary from '@/dictionaries'
 import { Task } from "@/types"
-import { createTaskAction, updateTaskAction  } from "@/lib/actions/tasks"
+import { createTaskAction, updateTaskAction } from "@/lib/actions/tasks"
 import { toast } from "@/components/ui/use-toast"
+import { ButtonLoader } from "@/components/button-loader"
 
 
 const formSchema = z.object({
@@ -150,7 +151,9 @@ export function CreateTaskForm({ onClose, editable, task } : CreateTaskFormProps
                     />
 
                     <div className="flex flex-col gap-y-2">
-                        <Button type="submit">Submit</Button>
+                        <Button type="submit" disabled={form.formState.isSubmitting}>
+                            {form.formState.isSubmitting ?  <ButtonLoader /> : 'Submit'}
+                        </Button>
                         <Button type="button" variant="outline" onClick={onClose}>Cancel</Button>
                     </div>
                 </form>
@@ -158,3 +161,4 @@ export function CreateTaskForm({ onClose, editable, task } : CreateTaskFormProps
         </div>
     )
 }
+

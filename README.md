@@ -27,6 +27,7 @@ Note -
 * User is only authorized for their own user data & tasks data, no one else has access
 * User can sort, filter from the list of tasks for easier access to data
 * Light & Dark Mode
+* User can go to their profile page and update photo & display name.
 
 
 ## Database design
@@ -106,6 +107,25 @@ tasks
   for all
     using (auth.uid () = tasks.user_id)
     with check (auth.uid () = tasks.user_id);
+
+
+
+-- setup storage
+insert into storage.buckets (id, name)
+  values ('avatars', 'avatars');
+
+
+-- Set up access controls for storage.
+-- See https://supabase.com/docs/guides/storage#policy-examples for more details.
+create policy "Avatar images are publicly accessible." on storage.objects
+  for select using (bucket_id = 'avatars');
+
+
+create policy "Anyone can upload an avatar." on storage.objects
+  for insert with check (bucket_id = 'avatars');
+
+create policy "Anyone can update their own avatar." on storage.objects
+  for update using ( auth.uid() = owner ) with check (bucket_id = 'avatars');
 ```
 
 ## How to Use

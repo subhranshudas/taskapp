@@ -13,7 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
-import { taskSchema, Task } from "./data/schema"
+import { taskSchema, Task } from "@/lib/schema"
 import { CreateTaskDrawer } from "../create-task-drawer"
 import { DeleteTaskDialog } from "../delete-task-dialog"
 

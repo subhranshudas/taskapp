@@ -16,6 +16,7 @@ import { getStatusDisplayValue } from "@/lib/utils"
 import { deleteTaskAction } from "@/lib/actions/tasks"
 import { toast } from "@/components/ui/use-toast"
 
+
 interface DeleteTaskDialogProps {
     task: Task
     toggle: (arg0: boolean) => void
@@ -95,6 +96,7 @@ export function DeleteTaskDialog({ task, toggle } : DeleteTaskDialogProps) {
                     </div>
 
                     <Button variant="destructive" type="submit">Delete</Button>
+
                 </form>
             </DialogContent>
         </Dialog>

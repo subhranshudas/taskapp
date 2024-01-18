@@ -40,8 +40,6 @@ export async function updateTask(
     { id, ...params } : UpdateTaskParams
 ) {
   
-    console.log("MUTATIONS: updateTask: params: >  ", params)
-
     const { data, error } = await client
       .from('tasks')
       .update(params)

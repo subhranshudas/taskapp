@@ -9,3 +9,4 @@ export async function fetchTasks(client: Client, userId: string) {
     .select()
     .eq('user_id', userId);
 }
+

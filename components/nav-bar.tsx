@@ -21,7 +21,7 @@ export function Navbar() {
                 <Button>Sign In</Button>
               </Link>
 
-              <UserMenu />            
+              <UserMenu />
           </div>
         </div>
       </nav>
