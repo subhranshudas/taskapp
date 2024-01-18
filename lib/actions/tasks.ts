@@ -36,6 +36,7 @@ export async function updateTaskAction(formData: any) {
   const title = formData['title'];
   const description = formData['description'];
   const status = formData['status'];
+  const id = formData['id'];
 
 
   const client = getSupabaseServerActionClient();
@@ -47,6 +48,7 @@ export async function updateTaskAction(formData: any) {
 
   // insert the post into the database
   await updateTask(client, {
+    id,
     title,
     description,
     status,

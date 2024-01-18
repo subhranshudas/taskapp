@@ -28,6 +28,7 @@ import {
 import * as dictionary from '@/dictionaries'
 import { Task } from "@/types"
 import { createTaskAction, updateTaskAction  } from "@/lib/actions/tasks"
+import { toast } from "@/components/ui/use-toast"
 
 
 const formSchema = z.object({
@@ -64,18 +65,23 @@ export function CreateTaskForm({ onClose, editable, task } : CreateTaskFormProps
 
     // gets called only on successful validation
     function onSubmit(values: z.infer<typeof formSchema>) {
-        // Do something with the form values.
-        // ✅ This will be type-safe and validated.
         console.log(values)
 
-        if (editable) {
-            updateTaskAction(values)
-        } else {
-            createTaskAction(values)
-        }
+        try {
+            if (editable && task) {
+                updateTaskAction({ ...values, id: task.id })
+            } else {
+                createTaskAction(values)
+            }
 
-        if (typeof onClose === 'function') {
-            onClose()
+            if (typeof onClose === 'function') {
+                onClose()
+            }
+        } catch (err) {
+            toast({
+                title: "task form submission error",
+                variant: "destructive"
+            })
         }
     }
 

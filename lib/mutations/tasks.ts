@@ -19,7 +19,6 @@ export async function insertTask(
     .from('tasks')
     .insert(params)
     .select()
-
  
   if (error) {
     throw error;
@@ -30,6 +29,7 @@ export async function insertTask(
 
 
 interface UpdateTaskParams {
+    id: string;
     title: string;
     description?: string;
     status: string;
@@ -37,21 +37,20 @@ interface UpdateTaskParams {
    
 export async function updateTask(
     client: Client,
-    params: UpdateTaskParams
+    { id, ...params } : UpdateTaskParams
 ) {
   
+    console.log("MUTATIONS: updateTask: params: >  ", params)
+
     const { data, error } = await client
       .from('tasks')
       .update(params)
-      .eq('some_column', 'someValue')
+      .eq('id', id)
       .select()
-  
-   
-    if (error) {
-      throw error;
-    }
-   
-    return data;
+      
+    if (error) throw error
+
+    return data
 }
 
 interface DeleteTaskParams {
@@ -67,6 +66,7 @@ export async function deleteTask(
       .from('tasks')
       .delete()
       .eq('id', params.id)
+      .select()
       
     if (error) {
       throw error;

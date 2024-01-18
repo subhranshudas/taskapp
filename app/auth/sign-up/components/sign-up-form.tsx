@@ -60,6 +60,10 @@ function SignInForm() {
           {isPending ? 'Signing up...' : 'Sign Up'}
         </Button>
       </div>
+      <div className='text-sm'>
+        {/* <span>Already have an account?</span> <Link className='underline' href='/auth/sign-in'>Sign In</Link> */}
+        {isSuccess ? <span>You can close this tab/window</span> : null}
+      </div>
     </form>
   );
 }

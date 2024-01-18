@@ -6,13 +6,6 @@ type Client = SupabaseClient<Database>;
 export async function fetchTasks(client: Client, userId: string) {
   return client
     .from('tasks')
-    .select(
-      `
-      id,
-      title,
-      description,
-      status
-    `
-    )
+    .select()
     .eq('user_id', userId);
 }
