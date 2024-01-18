@@ -26,6 +26,7 @@ Note -
 * Authenitcated user can fetch, create, update, delete tasks
 * User is only authorized for their own user data & tasks data, no one else has access
 * User can sort, filter from the list of tasks for easier access to data
+* Light & Dark Mode
 
 
 ## Database design
