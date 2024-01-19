@@ -134,10 +134,14 @@ create policy "Anyone can update their own avatar." on storage.objects
 
 ## How to Use
 1. Open the app https://taskapp-ebon.vercel.app/ in a browser window/tab
+2. Checkout https://www.loom.com/share/3191b3e8cacc4a4cb086d4ad492958c2
 
 
 ## Upcoming Improvements In Pipeline
-1. Finish the already created `dictionary` map for text content to make content dynamic.
-2. Implement Vitest & Playwright testing for the app.
+1. fix the next js cache issue while signin in & signin out
+2. Finish the already created `dictionary` map for text content to make content dynamic.
+3. Implement Vitest & Playwright testing for the app.
+4. create new pages for create & edit functionality providing the user the flexibility.
+
 
 
