@@ -1,5 +1,4 @@
 import Link from "next/link"
-import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/theme-toggle'
 import UserMenu from "@/components/user-menu";
 
@@ -12,16 +11,10 @@ export function Navbar() {
           <span className="font-extrabold text-2xl text-blue-400">taskapp</span>
         </Link>
         
-
         <div className="flex flex-1 items-center space-x-2 justify-end">
           <div className="flex items-center space-x-4">
-              <ThemeToggle />
-            
-              <Link href='/auth/sign-in'>
-                <Button>Sign In</Button>
-              </Link>
-
-              <UserMenu />
+            <ThemeToggle />
+            <UserMenu />
           </div>
         </div>
       </nav>

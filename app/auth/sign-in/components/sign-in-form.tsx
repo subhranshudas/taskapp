@@ -9,6 +9,8 @@ import { Label } from '@/components/ui/label';
  
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import useSignInWithPassword from '@/app/auth/hooks/use-sign-in-with-password';
+import { reloadWindow } from "@/lib//hack";
+
  
 function SignInForm() {
   const { isPending, isError, mutateAsync } = useSignInWithPassword();
@@ -33,6 +35,8 @@ function SignInForm() {
  
       // we redirect the user to the dashboard on success
       router.push('/dashboard');
+
+      reloadWindow()
     };
  
   return (

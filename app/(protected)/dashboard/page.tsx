@@ -5,11 +5,14 @@ import { CreateTaskDrawer } from '@/components/create-task-drawer'
 import { fetchTasks } from '@/lib/queries/tasks'
 import getSupabaseServerComponentClient from '@/lib/supabase/server-component-client'
 
+
 async function DashboardPage() {
     const tasks = await getTasks()
+    
 
     return (
       <section className='flex min-h-screen flex-col items-center justify-start p-16'>
+
         <h1 className='text-2xl md:text-4xl font-bold'>Dashboard</h1>
 
         <p className='py-4'>Feel free to create, edit and delete any task you like!</p>

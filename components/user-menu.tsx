@@ -2,24 +2,25 @@
 
 import { useMemo } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation'
 import { Session } from '@supabase/supabase-js';
 import { LogOut, LayoutDashboard, UserIcon, Settings2 } from 'lucide-react';
 
 import { Avatar, AvatarFallback } from './ui/avatar';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from './ui/dropdown-menu';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { Button } from "@/components/ui/button"
 
 import { useUserSession, useSignOut } from '@/lib/hooks';
 
-function UserMenu() {
+function UserMenu() {  
+  const pathname = usePathname()
   const session = useUserSession();
   const signOut = useSignOut();
   const displayName = useDisplayName(session);
 
-  // console.log("UserMenu render: session  = > ", session)
+  const isUserLoggedIn = !!(session && session.user)
 
-  if (!session?.user) return null
-
-  return (
+  return isUserLoggedIn ? (    
     <DropdownMenu>
       <DropdownMenuTrigger>
         <Avatar>
@@ -51,10 +52,16 @@ function UserMenu() {
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  );
+  ) : (
+    <Link href={pathname === "/auth/sign-in" ? '/auth/sign-up' : '/auth/sign-in'}>
+      <Button>{pathname === "/auth/sign-in" ? 'Sign Up' : 'Sign In'}</Button>
+    </Link>
+  )
 }
 
 export default UserMenu;
+
+
 
 function useDisplayName(session: Session | undefined) {
   return useMemo(() => {

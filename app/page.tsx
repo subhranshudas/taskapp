@@ -1,8 +1,8 @@
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
+import { AppLandingButtons } from "@/components/app-landing-buttons";
 
  
 export default function Home() {
+
   return (
     <div className='container'>
       <div className='flex flex-col space-y-14'>
@@ -29,23 +29,7 @@ export default function Home() {
           </span>
         </div>
  
-        <div className='flex flex-col space-y-3'>
-          <div className='flex space-x-4 justify-center'>
-              <Link href='/auth/sign-up'>
-                <Button>
-                  Create an Account
-                </Button>
-              </Link>
-            
- 
-            <Link href='/auth/sign-in'>
-              <Button variant="secondary">
-                Sign In
-              </Button>
-            </Link>
-          </div>
- 
-        </div>
+        <AppLandingButtons />
 
       </div>
     </div>
