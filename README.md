@@ -141,7 +141,7 @@ create policy "Anyone can update their own avatar." on storage.objects
 1. fix the next js cache issue while signin in & signin out
 2. Finish the already created `dictionary` map for text content to make content dynamic.
 3. Implement Vitest & Playwright testing for the app.
-4. create new pages for create & edit functionality to provide the user the flexibility open doing the task management inline & on dedicated page.
+4. create new pages for create & edit functionality to provide the user the flexibility for doing the task management both inline & on a dedicated page.
 
 
 
