@@ -63,13 +63,13 @@ export function CreateTaskDrawer({ editable, task, toggle } : CreateTaskDrawerPr
                         <DrawerTitle className="flex justify-between">
                             {dictionary.common.taskForm[editMode ? 'edit' : 'create'].formHeader}
                             
-                            <Link href="/task/new" title={editMode ? 'Open Edit Task page' : 'Open Create Task page'}>
+                            {/* <Link href="/task/new" title={editMode ? 'Open Edit Task page' : 'Open Create Task page'}>
                                 <FileSymlink
                                     className="cursor-pointer"
                                     color="#2563eb"
                                     size={24}
                                 />
-                            </Link>
+                            </Link> */}
                         </DrawerTitle>
                         <DrawerDescription>
                             {dictionary.common.taskForm[editMode ? 'edit' : 'create'].formInfo}
