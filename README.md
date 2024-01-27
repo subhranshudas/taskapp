@@ -8,7 +8,7 @@ Please checkout the live production version of the Task Management app called **
 Note - 
 1. I have built it as a Frontend dev but since Supabase provides robust backend features like postgres database & client SDK, i have used Supabase as my BaaS.
 
-2. Since it uses [Supabase](https://supabase.com/) as a Backend, if you want to run this locally please ask me for the `.env` values or you can create yours locally following the below [database design](#database-design)
+2. Since it uses [Supabase](https://supabase.com/) as a Backend, if you want to run this locally please create your local DB & ENV values locally by following the below [database design](#database-design)
 
 ## Tech-stack
 * NextJS 14 (Full stack React with Server Components, Server Actions)
